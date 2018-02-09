@@ -15,7 +15,7 @@ class JengaGame:
 	
 	def start_game(self):
 		message = 'Введите имена игроков через запятую: '
-		players = [name for name in input(message).split(',') if name]
+		players = [name for name in input(message).split() if name]
 		players = map(str.strip, players)
 		self.__players = list(players)
 		self.__number_of_players = len(self.__players)
@@ -72,7 +72,7 @@ class JengaGame:
 			print('\n{}, ну ты и рукожоп!!!'.format(player))
 			return
 		elif self.__moves < 20:
-			print('Ну вы и раки!!!')
+			print('Да вы просто раки!!!')
 		elif self.__moves < 30:
 			print('Что-то не очень (:')
 		elif self.__moves < 40:
