@@ -1,5 +1,6 @@
 import os
 import time
+import sys
 
 class JengaGame:
 	def __init__(self):
@@ -18,7 +19,7 @@ class JengaGame:
 		players = map(str.strip, players)
 		self.__players = list(players)
 		self.__number_of_players = len(self.__players)
-		os.system('cls')
+		self.clear_console()
 		print('Участников: {}'.format(self.__number_of_players))
 		print('Имена участников:')
 		for _ in self.__players:
@@ -32,6 +33,12 @@ class JengaGame:
 			self.__do_move()
 		self.__show_results()
 
+	def clear_console(self):
+		platform = sys.platform
+		if platform == 'win32':
+			os.system('cls')
+		else:
+			os.system('clear')
 
 	def __do_move(self):
 		self.__moves += 1
@@ -55,10 +62,11 @@ class JengaGame:
 
 	def __finish_game(self):
 		self.__game_over = True
+		self.clear_console()
 
 	def __show_results(self):
 		message = 'Игра окончена. Ходов сделано: {}. '.format(self.__moves)
-		print('\n' * 2, message, sep='', end='')
+		print(message, sep='', end='')
 		if self.__moves == 1:
 			player = self.__players[self.__who_moves]
 			print('\n{}, ну ты и рукожоп!!!'.format(player))
@@ -76,6 +84,8 @@ class JengaGame:
 		loser = self.__players[self.__who_moves]
 		print('Победитель: {}'.format(winner))
 		print('Проигравший: {}'.format(loser))
+
+
 
 Jenga = JengaGame()
 
